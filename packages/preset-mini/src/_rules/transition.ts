@@ -12,11 +12,7 @@ const transitionPropertyGroup: Record<string, string> = {
 }
 
 function transitionProperty(prop: string): string | undefined {
-  return h.properties(prop)
-    ?.split(',')
-    .flatMap(k => transitionPropertyGroup[k])
-    .filter(Boolean)
-    .join(',')
+  return h.properties(prop) ?? prop.split(',').flatMap(x => transitionPropertyGroup[x]).join(',')
 }
 
 export const transitions: Rule<Theme>[] = [
